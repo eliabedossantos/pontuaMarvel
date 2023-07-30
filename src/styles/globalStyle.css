@@ -1,0 +1,36 @@
+
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, li {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Inter, sans-serif;
+  line-height: normal;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: bold;
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+ul, ol {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
+a, button, input[type="submit"], input[type="reset"], input[type="button"] {
+  cursor: pointer;
+  border: 1px solid transparent; /* Adicione uma borda sutil quando o elemento estiver em foco */
+}
+
+* {
+  box-sizing: border-box;
+}
+

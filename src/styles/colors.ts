@@ -1,4 +1,4 @@
-export default {
+export const colors: any = {
   // colors default
   primary: '#00113D',
   primaryLight: '#213770',
@@ -23,7 +23,7 @@ export default {
   dark: '#2d2d2d',
   white: '#ffffff',
   for: '#444444',
-  gray: '#b3b3b3',
+  gray: '#777777',
   grayLight: '#eaecf0',
   facebook: '#5067E3',
   facebookDark: '#435AD2',

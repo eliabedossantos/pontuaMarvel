@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './globalStyle.css';
+import './styles/globalStyle.css';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { storeWrapper } from './redux';
@@ -12,21 +12,19 @@ import {  verifyUserLoggedIn } from './services/firebaseActions';
 
 
 function App() {
-
-useEffect(() => {
-  verifyUserLoggedIn().then((res) => {
-    console.log('res', res);
-    if(!res){
-      // navigate('/login')
-      console.log('deslogado', res);
-    
-    } else {
-      console.log('logado', {res});
-    }
-  }).catch((err) => {
-    console.log(err);
-  })
-}, []);
+  useEffect(() => {
+    verifyUserLoggedIn().then((res) => {
+      console.log('res', res);
+      if(!res){
+        console.log('deslogado', res);
+      
+      } else {
+        console.log('logado', {res});
+      }
+    }).catch((err) => {
+      console.log(err);
+    })
+  }, []);
 
 
   return (

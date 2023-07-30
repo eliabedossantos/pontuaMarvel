@@ -6,9 +6,6 @@ import {
     Header, 
     Logo, 
     Building, 
-    Card,
-    Title,
-    Label,
     ShowPassword
     
 } from "./Login.styles";
@@ -16,16 +13,16 @@ import WhiteLogo from "../../assets/images/logo_pontua_white.png";
 import BuildingImage from "../../assets/images/building.png";
 import Input from "../../components/Input/Input";
 import { useDispatch, useSelector } from "react-redux";
-import { modifyInputs } from "../../redux/actions";
 import { Eye, EyeSlash } from "phosphor-react";
 import { colors } from "../../styles/colors";
+import { handleEmail, handlePassword } from "../../redux/actions/userActions";
+import CardForm from "../../components/CardForm/CardForm";
 
 export default function Login(){
     const dispatch = useDispatch();
     const emailRedux = useSelector((state: any) => state.UserReducer.email);
     const passwordRedux = useSelector((state: any) => state.UserReducer.password);
-    const [showPassword, setShowPassword] = useState(false);
-
+    const [showPassword, setShowPassword] = useState(false)
 
     const handleShowPassword = () => {
         setShowPassword(!showPassword);
@@ -64,31 +61,26 @@ export default function Login(){
                         <Building src={BuildingImage} alt="Desenho de um prédio com 6 andares, com janelas e uma porta no centro do edifício." />
                     </Col>
                     <Col lg={4} md={5} sm={12} xs={12}>
-                        <Card>
-                            <Title>
-                                Bem-vindo
-                            </Title>
-                            <Label>
-                                Informe as suas credenciais de acesso ao portal
-                            </Label>
+                        <CardForm>
+                         
                             <Form>
                                 <Input
                                     value={emailRedux}
                                     placeholder="Informe seu e-mail"
                                     iconComponent={<span>@</span>}
                                     type="email"
-                                    onChange={(e: any) => handleEmail(e.target.value)}
+                                    onChange={(e: any) => handleEmail(e.target.value, dispatch)}
                                 />
                                 <Input
                                     value={passwordRedux}
                                     placeholder="Informe sua senha"
                                     iconComponent={renderPasswordButton()}
                                     type={!showPassword ? "password" : "text"}
-                                    onChange={(e: any) => handlePassword(e.target.value)}
+                                    onChange={(e: any) => handlePassword(e.target.value, dispatch)}
                                 />
 
                             </Form>
-                        </Card>
+                        </CardForm>
                     </Col>
                 </Row>
             </Container>

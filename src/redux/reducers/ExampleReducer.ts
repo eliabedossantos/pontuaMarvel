@@ -2,7 +2,7 @@ const INITIAL_STATE = {
   testeRedux: 'testeRedux',
 };
 
-const ExemploReducer = (state = INITIAL_STATE, action: any) => {
+const ExempleReducer = (state = INITIAL_STATE, action: any) => {
   switch (action.type) {
     case 'EXEMPLO_INICIAL_STATE':
       console.log('EXEMPLO_INICIAL_STATE', action);
@@ -15,4 +15,4 @@ const ExemploReducer = (state = INITIAL_STATE, action: any) => {
   }
 };
 
-export default ExemploReducer;
+export default ExempleReducer;

@@ -30,29 +30,6 @@ export const Building = styled.img`
 
 `;
 
-export const ShowPassword = styled.button`
-    background-color: transparent;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 0;
-}`;
-
-export const ButtonIcon = styled.img`
-    width: 1em;
-    height: 1em;
-    object-fit: contain;
-    pointer-events: none;
-`;
-
-export const ForgotPasswordContainer = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-top: 1em;
-    gap: .5em;
-`;
 
 
 

@@ -25,6 +25,8 @@ export const colors: any = {
   for: '#444444',
   gray: '#777777',
   grayLight: '#eaecf0',
+  grayStrong: '#101828',
+  border: '#667085',
   facebook: '#5067E3',
   facebookDark: '#435AD2',
   google: '#DF4930',

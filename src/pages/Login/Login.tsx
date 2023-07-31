@@ -6,14 +6,18 @@ import {
     Header, 
     Logo, 
     Building, 
-    ShowPassword
+    ShowPassword,
+    ButtonIcon,
+    ForgotPasswordContainer
     
 } from "./Login.styles";
 import WhiteLogo from "../../assets/images/logo_pontua_white.png";
 import BuildingImage from "../../assets/images/building.png";
+import LoginIcon from "../../assets/icons/login.svg";
+import QuestionIcon from "../../assets/icons/question.svg";
 import Input from "../../components/Input/Input";
 import { useDispatch, useSelector } from "react-redux";
-import { Eye, EyeSlash } from "phosphor-react";
+import { Eye, EyeSlash, SignIn } from "phosphor-react";
 import { colors } from "../../styles/colors";
 import { handleEmail, handlePassword } from "../../redux/actions/userActions";
 import CardForm from "../../components/CardForm/CardForm";
@@ -56,13 +60,29 @@ export default function Login(){
                 </Row>
             </Container>
             <Container className="pt-3">
-                <Row className="justify-content-between">
-                    <Col lg={7} md={7} sm={12} xs={12}>
+                <Row className="justify-content-end gap-5">
+                    <Col lg={6} md={5} sm={12} xs={12}>
                         <Building src={BuildingImage} alt="Desenho de um prédio com 6 andares, com janelas e uma porta no centro do edifício." />
                     </Col>
                     <Col lg={4} md={5} sm={12} xs={12}>
-                        <CardForm>
-                         
+                        <CardForm
+                            title="Bem-vindo"
+                            subtitle="Informe as suas credenciais de acesso ao portal"
+                            submitText={'entrar'}
+                            showIcon={true}
+                            icon={<ButtonIcon src={LoginIcon} alt="Ícone login" />}
+                            showButton
+                            footer={
+                                <ForgotPasswordContainer>
+                                    <ButtonIcon src={QuestionIcon} alt="Ícone interrogação" />
+                                    <Link 
+                                        to="/forgot-password"
+                                        style={styles.linkButton}
+                                    >Esqueceu a senha?</Link>
+                                </ForgotPasswordContainer>
+                            }
+                            afterContent="."
+                        >
                             <Form>
                                 <Input
                                     value={emailRedux}
@@ -86,4 +106,14 @@ export default function Login(){
             </Container>
         </Main>
     )
+}
+
+export const styles = {
+    linkButton: {
+        color: colors.secondary, 
+        textDecoration: 'none',
+        fontSize: 12,
+        fontFamily: 'Epilogue, sans-serif',
+        fontWeight: 400,
+    }
 }

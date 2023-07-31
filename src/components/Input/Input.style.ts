@@ -23,7 +23,6 @@ export const Input = styled.input`
         font-weight: 400;
 
     }
-
     &:focus {
         outline: none;
         border: 1px solid ${colors.primary} !important;

@@ -1,15 +1,21 @@
+type Array = {
+    id: number;
+    name: string;
+    image: string;   
+}
 export interface IDropDownProps {
-    image?: string | undefined;
-    alt?: string | undefined;
-    name?: string | undefined;
-    options: Array<any>;
+    options?: Array[];
     onChange: (value: any) => void;
-    selectItem: (value: any) => void;
+    selectItem?: (value: any) => void;
     selected?: any;
 }
 
 export interface IDropDownState {
-    isOpen?: boolean;
+    isopen?: boolean;
     selected?: any;
     children?: any;
+}
+
+export interface INameStyledProps {
+    default?: boolean;
 }

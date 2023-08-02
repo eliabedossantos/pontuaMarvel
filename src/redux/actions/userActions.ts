@@ -16,5 +16,9 @@ export const handlePassword = (text: string, dispatch: any) => {
     }
 }
 
+export const selectHero = (hero: any, dispatch: any) => {
+    dispatch(modifyInputs(hero, 'USER_MODIFY_SELECTED_HERO'));
+}
+
 
 

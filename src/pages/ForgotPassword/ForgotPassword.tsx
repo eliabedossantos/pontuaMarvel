@@ -43,7 +43,7 @@ export default function ForgotPassword(){
                             subtitle="Informe o e-mail do seu cadastro. Nós estaremos realizando o envio de um link com as instruções para você redefinir a sua senha."
                             submitText={success ? 'voltar para o login' : 'enviar link'}
                             showIcon={false}
-                            afterContent={success ? ' ;)' : '.'}
+                            after={success ? ' ;)' : '.'}
                             showButton
                         >
                             {!success && (

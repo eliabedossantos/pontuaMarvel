@@ -3,6 +3,7 @@ const INITIAL_STATE = {
   password: '',
   uid: '',
   logged: false,
+  selectedHero: {},
 };
 
 const UserReducer = (state = INITIAL_STATE, action: any) => {
@@ -19,7 +20,13 @@ const UserReducer = (state = INITIAL_STATE, action: any) => {
     case 'USER_MODIFY_UID':
       console.log('USER_MODIFY_UID', action);
       return {...state, uid: action.payload};
-   
+    case 'USER_MODIFY_LOGGED':
+      console.log('USER_MODIFY_LOGGED', action);
+      return {...state, logged: action.payload};
+    case 'USER_MODIFY_SELECTED_HERO':
+      console.log('USER_MODIFY_SELECTED_HERO', action);
+      return {...state, selectedHero: action.payload};
+      
     default:
       return state;
   }

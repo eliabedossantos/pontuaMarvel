@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../../styles/colors";
-import { IDropDownState } from "./types";
+import { IDropDownState, INameStyledProps } from "./types";
 
 export const Container = styled.div`
     width: 100%;
@@ -13,52 +13,80 @@ export const Button = styled.button`
     outline: none;
     cursor: pointer;
     padding: 0;
+    width: 100%;
+    height: 3rem;
+    margin-top: 1rem;
 }`;
 
 export const Content = styled(Container)`
-    width: 100%;
-    height: 3rem;
+    height: 100%;
     background-color: ${colors.white};
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 .9rem;
     border: 1px solid ${colors.border};
+    border-radius: .6rem;
 `;
 
 export const RoundedImage = styled.img`
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2rem;
+    height: 2rem;
     border-radius: 50%;
     object-fit: cover;
 `;
 
-export const Name = styled.span`
+export const Name = styled.span<INameStyledProps>`
     font-size: 1rem;
-    color: ${colors.grayStrong};
+    color: ${props => props.default ? colors.grayMedium : colors.grayStrong};
     font-weight: 500;
     margin-left: .5rem;
     margin-right: auto;
 `;
 
-export const DropdownItems = styled.div<IDropDownState>`
+export const DropdownContainer = styled.div<IDropDownState>`
     width: 100%;
-    max-height: 10rem;
+    height: 10rem;
     overflow-y: auto;
     position: absolute;
-    top: 3rem;
+    top: 4.5rem;
     left: 0;
     background-color: ${colors.white};
-    border: 1px solid ${colors.border};
+    border: .6px solid ${colors.border};
     border-radius: .6rem;
-    elevation: 1;
     z-index: 1;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     overflow-x: hidden;
-    display: ${props => props.isOpen ? 'flex' : 'none'};
+    display: ${props => props.isopen ? 'flex' : 'none'};
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
 `;
 
-    
+export const DropdownItems = styled.ul`
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+`;
+
+export const DropdownItem = styled.li`
+    width: 100%;
+    cursor: pointer;
+    &:hover {
+        background-color: ${colors.grayLight};
+    }
+`;
+
+export const ButtonItem = styled(Button)`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: .6rem .9rem;
+
+`;

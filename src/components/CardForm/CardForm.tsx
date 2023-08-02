@@ -13,7 +13,7 @@ import {
 const CardForm: React.FC<ICardProps> = (props) => {
     return(
         <CardStyled>
-            <Title afterContent={props.afterContent}>
+            <Title aftercontent={props.after}>
                 {props.title}
             </Title>
             <Subtitle>
@@ -25,7 +25,7 @@ const CardForm: React.FC<ICardProps> = (props) => {
                     onClick={props.onSubmit}
                     disabled={props.disabled}
                 >
-                    <SubmitText icon>
+                    <SubmitText icon={props.showIcon}>
                         {props.submitText}
                     </SubmitText>
                     {props.icon}

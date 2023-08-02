@@ -5,16 +5,22 @@ import {
     Main,
     Header, 
     Logo, 
-    Building, 
+    Building,
+    ButtonEnter, 
     
 } from "./SelectHero.styles";
 import WhiteLogo from "../../assets/images/logo_pontua_white.png";
 import BuildingImage from "../../assets/images/building.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CardForm from "../../components/CardForm/CardForm";
+import DropDownCustom from "../../components/Dropdown/DropDown";
+import { mockHeroes } from "../../util/mock/Heroes";
+import { ISelectedHero } from "./types";
+import { selectHero } from "../../redux/actions/userActions";
 
 export default function SelectHero(){
     const dispatch = useDispatch();
+    const selectedHero: ISelectedHero = useSelector((state: any) => state.UserReducer.selectedHero);
 
     return(
         <Main>
@@ -40,10 +46,22 @@ export default function SelectHero(){
                             subtitle="Tenha a visão completa do seu agente."
                             submitText={'entrar'}
                             showIcon={false}
-                            afterContent="."
+                            after="."
                             showButton={false}
+                            footer={
+                                <ButtonEnter as={Link} to="/home">
+                                    Entrar
+                                </ButtonEnter>
+                            }
                         >
-                            
+                            <DropDownCustom
+                                options={mockHeroes}
+                                onChange={(option: any) => {
+                                    selectHero(option, dispatch);
+                                    console.log(option);
+                                }}
+                                selected={selectedHero}
+                            />
                         </CardForm>
                     </Col>
                 </Row>

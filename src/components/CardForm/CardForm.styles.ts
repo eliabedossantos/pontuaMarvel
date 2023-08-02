@@ -17,7 +17,7 @@ export const Title = styled.h1<StyledH1Props>`
     font-weight: 700;
 
     &::after {
-        content: ${props => props.afterContent ? `'${props.afterContent}'` : '.'};
+        content: ${props => props.aftercontent ? `'${props.aftercontent}'` : '.'};
         color: ${colors.secondary};
     }
 `;
@@ -27,7 +27,7 @@ export const Subtitle = styled.label`
     font-family: Epilogue;
     font-size: 1rem;
     font-weight: 400;
-    margin-top: 1rem;
+    margin-top: 1.7rem;
 `;
 
 export const Submit = styled.button`

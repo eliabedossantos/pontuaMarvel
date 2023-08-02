@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { colors } from '../../styles/colors';
+import { Link } from 'react-router-dom';
 
 export const Main = styled.div`
     background-color: ${colors.primary};
@@ -30,6 +31,25 @@ export const Building = styled.img`
 
 `;
 
+export const ButtonEnter = styled(Link)`
+    background-color: ${colors.primary};
+    border: none;
+    outline: none;
+    padding: .9rem 1.5rem;
+    border-radius: .6rem;
+    color: ${colors.white};
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: 'Epilogue', sans-serif;
+    margin-top: 1.5rem;
+    transition: .3s;
+    &:hover{
+        background-color: ${colors.primaryLight};
+    }
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+`;
 
 
 

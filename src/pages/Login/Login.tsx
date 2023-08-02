@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { 
     Main,
     Header, 
@@ -26,6 +26,7 @@ export default function Login(){
     const dispatch = useDispatch();
     const emailRedux = useSelector((state: any) => state.UserReducer.email);
     const passwordRedux = useSelector((state: any) => state.UserReducer.password);
+    const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false)
 
     const handleShowPassword = () => {
@@ -45,6 +46,11 @@ export default function Login(){
             </ShowPassword>
         )
     }
+
+    const submitForm = () => {
+        navigate('/select-hero');
+    }
+
 
     return(
         <Main>
@@ -81,9 +87,10 @@ export default function Login(){
                                     >Esqueceu a senha?</Link>
                                 </ForgotPasswordContainer>
                             }
-                            afterContent="."
+                            after="."
+                            onSubmit={submitForm}
                         >
-                            <Form>
+                            <Form onSubmit={(e: any) => e.preventDefault()}>
                                 <Input
                                     value={emailRedux}
                                     placeholder="Informe seu e-mail"

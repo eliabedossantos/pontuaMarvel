@@ -9,7 +9,7 @@ export interface ICardProps {
     showIcon?: boolean | undefined;
     icon?: React.ReactNode;
     footer?: React.ReactNode;
-    afterContent?: string | undefined;
+    after?: string;
     showButton?: boolean | undefined;
 }
 
@@ -18,5 +18,5 @@ export interface StyledSpanProps {
 }
 
 export interface StyledH1Props {
-    afterContent?: string | undefined;
+    aftercontent?: string | undefined;
 }

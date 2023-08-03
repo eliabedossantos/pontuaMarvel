@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import RowContainer from "../../components/RowContainer/RowContainer";
+import { RowContainer, RowContainerWrapped } from "../../components/RowContainer/RowContainer.styles";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import { Col, Container, Row } from "react-bootstrap";
-import { StyledDividerContainer } from "../../components/Divider/Divider.styles";
+import { StyledDivider, StyledDividerContainer } from "../../components/Divider/Divider.styles";
 import { StyledContainer } from "./Home.styles";
 import SearchInput from "../../components/SearchInput/SearchInput";
+import CardHero from "../../components/Cardhero/CardHero";
+import { mockHeroes } from "../../util/mock/Heroes";
 
 export default function Home() {
     const [search, setSearch] = useState("");
@@ -22,9 +24,17 @@ export default function Home() {
                 </StyledDividerContainer>
                 <Container fluid>
                     <Row>
-                       <Col>
-                       
-                       </Col>
+                        <Col>
+                            <RowContainerWrapped>
+                                {mockHeroes.map((hero, index) => {
+                                    return (
+                                    <CardHero key={index} image={hero.image} name={hero.name}  description={hero.description} id={hero.id}/>
+                                    )
+                                })}
+                            </RowContainerWrapped>
+                            <StyledDivider />
+                            
+                        </Col>
                     </Row>
                 </Container>
             </StyledContainer>

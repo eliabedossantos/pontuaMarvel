@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { colors } from '../../styles/colors';
 
-export const Container = styled.div`
+export const RowContainer = styled.div`
     background-color: ${colors.white};
     width: 100%;
     height: 100vh;    
@@ -10,3 +10,17 @@ export const Container = styled.div`
     justify-content: flex-start;
     align-items: flex-start;
 `;
+
+export const RowContainerWrapped = styled.div`
+    background-color: ${colors.white};
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 0 1rem;
+    gap: 10px;
+`;
+

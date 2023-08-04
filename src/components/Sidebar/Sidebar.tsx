@@ -33,7 +33,7 @@ const Sidebar: React.FC<ISidebarProps> = (props) => {
                     </SidebarIcon>
                     Home
                 </SidebarItem>
-                <SidebarItem to="/home" onMouseEnter={() => setHoveredProfile(true)} onMouseLeave={() => setHoveredProfile(false)}>
+                <SidebarItem to="/profile" onMouseEnter={() => setHoveredProfile(true)} onMouseLeave={() => setHoveredProfile(false)}>
                     <SidebarIcon>
                         <IconProfile color={hoveredProfile ? colors.secondary : colors.black}/>
                     </SidebarIcon>

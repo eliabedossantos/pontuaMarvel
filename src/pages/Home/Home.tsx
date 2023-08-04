@@ -7,13 +7,23 @@ import { StyledContainer } from "./Home.styles";
 import SearchInput from "../../components/SearchInput/SearchInput";
 import CardHero from "../../components/Cardhero/CardHero";
 import { mockHeroes } from "../../util/mock/Heroes";
+import Pagination from "../../components/Pagination/Pagination";
 
 export default function Home() {
     const [search, setSearch] = useState("");
+    const [currentPage, setCurrentPage] = useState(1);
+    const totalPages = 10;
+  
 
     const handleSearch = (value: string) => {
         setSearch(value);
     }
+
+    const handlePageChange = (page: number) => {
+        console.log(page);
+        setCurrentPage(page);
+    };
+    
 
     return (
         <RowContainer>
@@ -33,7 +43,11 @@ export default function Home() {
                                 })}
                             </RowContainerWrapped>
                             <StyledDivider />
-                            
+                            <Pagination
+                                currentPage={currentPage}
+                                totalPages={totalPages}
+                                onPageChange={handlePageChange}
+                            />
                         </Col>
                     </Row>
                 </Container>

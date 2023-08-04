@@ -14,7 +14,6 @@ export const RowContainer = styled.div`
 export const RowContainerWrapped = styled.div`
     background-color: ${colors.white};
     width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;

@@ -2,16 +2,31 @@ import React from "react";
 import { ICardHeroProps } from "./types";
 import { MagnifyingGlass } from "phosphor-react";
 import { colors } from "../../styles/colors";
-import { StyledCard, StyledImage } from "./CardHero.styles.";
+import { 
+    StyledCard, 
+    StyledImage, 
+    StyledInfo, 
+    StyledTitle 
+} from "./CardHero.styles.";
 
 const CardHero: React.FC<ICardHeroProps> = (props) => {
+    const { description, name, image } = props;
+
+    const truncatedDescription = description.length > 70
+      ? description.substring(0, 70).replace(/^(.{70}[^\s]*).*/, "$1") + "..."
+      : description;
+
     return(
        <StyledCard>
-            <StyledImage src={props.image}  alt={props.name}/>
-            <div className="card-body">
-                <h5 className="card-title">{props.name}</h5>
-                <p className="card-text">{props.description}</p>
-            </div>
+            <StyledImage src={image}  alt={name}/>
+            <StyledInfo>
+                <StyledTitle>
+                    {name}
+                </StyledTitle>
+                <p className="card-text">
+                    {truncatedDescription}
+                </p>
+            </StyledInfo>
        </StyledCard>
     );
 }

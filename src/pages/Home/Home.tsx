@@ -29,7 +29,7 @@ export default function Home() {
         <RowContainer>
             <Sidebar />
             <StyledContainer>
-                <StyledDividerContainer>
+                <StyledDividerContainer padding={true}>
                     <SearchInput onChange={(text) => handleSearch(text)} value={search} placeholder="Busque um agente" />
                 </StyledDividerContainer>
                 <Container fluid>

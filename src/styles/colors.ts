@@ -1,6 +1,7 @@
 export const colors: any = {
   // colors default
   primary: '#00113D',
+  primaryLight2: '#081B4E',
   primaryLight: '#213770',
   primaryExtraLight: '#747d94',
   modalBlack: 'hsla(140, 20%, 3%, 0.9)',

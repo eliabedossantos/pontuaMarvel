@@ -23,7 +23,7 @@ const Sidebar: React.FC<ISidebarProps> = (props) => {
 
     return (
         <SidebarContainer>
-            <StyledDividerContainer>
+            <StyledDividerContainer padding={true}>
                 <Logo src={BlueLogo} alt="Logo Pontua" />
             </StyledDividerContainer>
             <SidebarBody>

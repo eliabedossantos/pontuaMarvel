@@ -9,7 +9,7 @@ export const StyledDivider = styled.div`
 `;
 
 
-export const StyledDividerContainer = styled.div`
+export const StyledDividerContainer = styled.div<{ padding: boolean}>`
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -18,5 +18,5 @@ export const StyledDividerContainer = styled.div`
     height: 60px;
     margin-bottom: 16px;
     border-bottom: 1px solid ${colors.divider};
-    padding-left: 26px;
+    padding-left: ${(props) => props.padding ? " 26px" : "0"};
 `;

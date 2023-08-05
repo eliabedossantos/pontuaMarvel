@@ -5,8 +5,9 @@ body, h1, h2, h3, h4, h5, h6, p, ul, ol, li {
 }
 
 body {
-  font-family: Inter, sans-serif;
+  font-family: Epilogue, sans-serif;
   line-height: normal;
+  font-size: 16px;
 }
 
 h1, h2, h3, h4, h5, h6 {

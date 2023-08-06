@@ -1,19 +1,25 @@
 
 import styled from 'styled-components';
 import { colors } from '../../styles/colors';
+import { StyledCardProps } from './types';
 
-export const StyledCard = styled.div`
+
+export const StyledCard = styled.div<StyledCardProps>`
     flex: 1;
     min-width: 260px;
     max-width: 100%;
-    height: 150px;
+    height: ${props => props.showAllContent ? '15rem'  : '9.3rem' };
     box-sizing: border-box;
     display: flex;
-    background-color: ${colors.grayLight};
+    flex-direction: row;
+    align-items: 'flex-start';
+    justify-content: flex-start;
+    background-color: ${props => props.showAllContent ? colors.white : colors.grayLight};
     border-radius: 0.95rem;
-    padding: .95rem .6rem;
+    padding: ${props => props.showAllContent ? '2.6rem 2.1rem' : '.95rem .6rem;'};
     overflow: hidden;
     text-overflow: ellipsis;
+    box-shadow: 0px 6px 18px 0px rgba(0, 0, 0, 0.06);
 
 
     @media (max-width: 768px) {
@@ -22,15 +28,15 @@ export const StyledCard = styled.div`
     }
 `;
 
-export const StyledImage = styled.img`
-    width: 85px;
-    height: 100%;
+export const StyledImage = styled.img<StyledCardProps>`
+    width: ${props => props.showAllContent ? '5.6rem' : '5.3rem' };
+    height: ${props => props.showAllContent ? '5.6rem' : '100%' };
     object-fit: cover;
-    border-radius: 0.8rem;
-    margin-right: 1rem;
+    border-radius: ${props => props.showAllContent ? '50%' : '0.8rem' };
+    margin-right: ${props => props.showAllContent ? '1.8rem' : '1rem' };
 `;
 
-export const StyledInfo = styled.div`   
+export const StyledInfo = styled.div<StyledCardProps>`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -39,17 +45,17 @@ export const StyledInfo = styled.div`
     overflow: hidden;
 `;
 
-export const StyledTitle = styled.h3`
-    font-size: 1.1rem;
+export const StyledTitle = styled.h3<StyledCardProps>`
+    font-size: ${props => props.showAllContent ? '1.5rem' : '1.1rem' };
     font-family: 'Epilogue', sans-serif;
     font-weight: 700;
-    color: ${colors.black};
-    margin-bottom: .6rem;
+    color: ${props => props.showAllContent ? colors.primaryLight2 : colors.black};
+    margin-bottom: ${props => props.showAllContent ? '1.1rem' : '.6rem' };
 `;
 
-export const StyledDescription = styled.p`
-    font-size: .9rem;
+export const StyledDescription = styled.p<StyledCardProps>`
+    font-size: ${props => props.showAllContent ? '1rem' : '.9rem' };
     font-family: 'Epilogue', sans-serif;
-    font-weight: 300;
-    color: ${colors.black};
+    font-weight: ${props => props.showAllContent ? 600 : 300 };
+    color: ${props => props.showAllContent ? colors.gray : colors.black};
 `;

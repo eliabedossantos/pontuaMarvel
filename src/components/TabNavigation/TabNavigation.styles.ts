@@ -13,10 +13,10 @@ export const TabNavigationContainer = styled.div`
     
 `;
 
-export const TabNavigationItem = styled.button<{ isActive: boolean }>`
+export const TabNavigationItem = styled.button<{ isactive: boolean }>`
     border: none;
     background-color: transparent;
-    color: ${({ isActive }) => (isActive ? colors.primary : colors.gray)};
+    color: ${({ isactive }) => (isactive ? colors.primary : colors.gray)};
     font-size: 0.8rem;
     font-weight: 500;
 `;

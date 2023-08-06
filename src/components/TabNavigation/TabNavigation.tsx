@@ -10,7 +10,7 @@ const TabNavigation: React.FC<ITabNavigationProps> = (props) => {
             <TabNavigationContainer>
                 {props.tabs && props.tabs.map((tab, index) => (
                     <div key={index} className="position-relative">
-                        <TabNavigationItem isActive={props.activeTab.id === tab.id} onClick={() => props.onTabChange && props.onTabChange(tab)}
+                        <TabNavigationItem isactive={props.activeTab.id === tab.id} onClick={() => props.onTabChange && props.onTabChange(tab)}
                         >
                             <span>{tab.name}</span>
                         </TabNavigationItem>

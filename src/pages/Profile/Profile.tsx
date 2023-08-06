@@ -7,6 +7,7 @@ import { StyledContainer } from "./Profile.styles";
 import TitleProfile from "../../components/TitleProfile/TitleProfile";
 import TabNavigation from "../../components/TabNavigation/TabNavigation";
 import { ITab } from "./types";
+import CardHero from "../../components/Cardhero/CardHero";
 
 const tabs: ITab[] = [
     {
@@ -52,6 +53,18 @@ export default function Profile() {
                                 activeTab={activeTab}
                                 onTabChange={(tab) => setActiveTab(tab)}
                             />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                        {activeTab.id === 1 && (
+                            <CardHero 
+                                showAllContent={true}
+                                name="Cyclops"
+                                description="Cyclops is a fictional superhero appearing in American comic books published by Marvel Comics and is a founding member of the X-Men"
+                                image="https://i.annihil.us/u/prod/marvel/i/mg/6/70/526547e2d90ad.jpg"
+                            />  
+                        )}
                         </Col>
                     </Row>
                 </Container>

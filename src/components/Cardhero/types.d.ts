@@ -5,4 +5,9 @@ export interface ICardHeroProps {
     description: string;
     className?: string;
     index?: number;
+    showAllContent?: boolean;
+}
+
+export interface StyledCardProps {
+    showAllContent?: boolean;
 }

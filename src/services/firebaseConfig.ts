@@ -4,12 +4,13 @@ import { getAuth } from "firebase/auth";
 import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAv9YjHu5i4Vit7ERNb3XCYa_01qgBXKBw",
-  authDomain: "learn-by-cases.firebaseapp.com",
-  projectId: "learn-by-cases",
-  storageBucket: "learn-by-cases.appspot.com",
-  messagingSenderId: "232789714143",
-  appId: "1:232789714143:web:fcaec6907b3a1e4c3bb56a"
+  apiKey: "AIzaSyBKVyKQzrdTwYkhoUYgoNPw56exfEx9RHI",
+  authDomain: "pontuamarvel.firebaseapp.com",
+  projectId: "pontuamarvel",
+  storageBucket: "pontuamarvel.appspot.com",
+  messagingSenderId: "147004699234",
+  appId: "1:147004699234:web:67f56cfd92ed5e439f173b",
+  measurementId: "G-DZQVJ3G2WJ"
 };
 
 const app = initializeApp(firebaseConfig);

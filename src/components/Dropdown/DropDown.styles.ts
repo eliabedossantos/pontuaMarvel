@@ -46,7 +46,7 @@ export const Name = styled.span<INameStyledProps>`
 
 export const DropdownContainer = styled.div<IDropDownState>`
     width: 100%;
-    height: 10rem;
+    height: 15rem;
     overflow-y: auto;
     position: absolute;
     top: 4.5rem;
@@ -55,7 +55,7 @@ export const DropdownContainer = styled.div<IDropDownState>`
     border: .6px solid ${colors.border};
     border-radius: .6rem;
     z-index: 1;
-    overflow-x: hidden;
+    overflow-y: auto;
     display: ${props => props.isopen ? 'flex' : 'none'};
     flex-direction: column;
     justify-content: flex-start;

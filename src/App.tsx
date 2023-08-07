@@ -13,19 +13,21 @@ import Loading from './components/Loading/Loading';
 
 
 function App() {
+
   useEffect(() => {
     verifyUserLoggedIn().then((res) => {
       console.log('res', res);
       if(!res){
-        console.log('deslogado', res);
+        console.log('deslogado');
+        window.location.href = '/login';
       
       } else {
-        console.log('logado', {res});
+        console.log('logado');
       }
     }).catch((err) => {
       console.log(err);
     })
-  }, []);
+  }, [])
 
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { 
@@ -14,13 +14,62 @@ import BuildingImage from "../../assets/images/building.png";
 import { useDispatch, useSelector } from "react-redux";
 import CardForm from "../../components/CardForm/CardForm";
 import DropDownCustom from "../../components/Dropdown/DropDown";
-import { mockHeroes } from "../../util/mock/Heroes";
 import { ISelectedHero } from "./types";
 import { selectHero } from "../../redux/actions/userActions";
+import { getCharacters } from "../../services/character-rest";
+import swal from "sweetalert";
 
 export default function SelectHero(){
     const dispatch = useDispatch();
-    const selectedHero: ISelectedHero = useSelector((state: any) => state.UserReducer.selectedHero);
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [offset, setOffset] = useState<number>(0);
+    const [heroes, setHeroes] = useState<any[]>([]);
+    const [loading, setLoading] = useState<boolean>(false);
+    const [selectedHero, setSelectedHero] = useState<ISelectedHero>({});
+    const limit: number = 10;
+
+    function CharacterInfo(searchHero: object = {}) {
+        setLoading(true);
+        getCharacters({
+            limit: limit,
+            offset: offset,
+        })
+        .then(res => {
+            let heroesArr = res.results.map((hero: any) => {
+                return {
+                    id: hero.id,
+                    name: hero.name,
+                    description: hero.description ? hero.description : 'Sem descrição',
+                    image: hero.thumbnail.path + '.' + hero.thumbnail.extension,
+                }
+            });
+            setHeroes(prevState => prevState !== heroesArr ? [...prevState, ...heroesArr] : heroesArr);
+            setLoading(false);
+            console.log('result', res.results);
+        })
+        .catch(err => {
+            console.error('Erro na requisição:', err);
+            setLoading(false);
+            swal({
+                title: "Erro!",
+                text: "Erro ao buscar os dados!",
+                icon: "error"
+            });
+        });
+    }
+
+    const handlePageChange = (page: number) => {
+        console.log('page', page, 'offset', offset);
+        setCurrentPage(page);
+        setOffset((page) * limit);
+        CharacterInfo({});
+    };
+
+    useEffect(() => {
+        CharacterInfo();
+    }, [currentPage, offset]);
+
+    
 
     return(
         <Main>
@@ -49,18 +98,21 @@ export default function SelectHero(){
                             after="."
                             showButton={false}
                             footer={
-                                <ButtonEnter as={Link} to="/home">
+                                <ButtonEnter as={Link} to="/profile">
                                     Entrar
                                 </ButtonEnter>
                             }
                         >
                             <DropDownCustom
-                                options={mockHeroes}
+                                options={heroes}
                                 onChange={(option: any) => {
-                                    selectHero(option, dispatch);
+                                    setSelectedHero(option);
+                                    selectHero(option.id, dispatch);
                                     console.log(option);
                                 }}
                                 selected={selectedHero}
+                                currentPage={currentPage}
+                                onPageChange={handlePageChange}
                             />
                         </CardForm>
                     </Col>

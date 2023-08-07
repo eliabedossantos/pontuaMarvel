@@ -17,6 +17,7 @@ import { colors } from '../../styles/colors';
 
 const DropDownCustom: React.FC<IDropDownProps> = (props) => {
     const [show, setShow] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(false);
 
     const handleShow = () => {
         setShow(!show);
@@ -26,6 +27,19 @@ const DropDownCustom: React.FC<IDropDownProps> = (props) => {
         props.onChange(option);
         setShow(false);
     }
+
+    const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+        const target = e.target as HTMLDivElement;
+        if (target.scrollHeight - target.scrollTop === target.clientHeight) {
+          if (!loading) {
+            setLoading(true);
+            if (props.onPageChange && props.currentPage !== undefined) {
+              props.onPageChange(props.currentPage + 1);
+            }
+          }
+        }
+      };
+      
 
     return(
         <Container>
@@ -42,7 +56,7 @@ const DropDownCustom: React.FC<IDropDownProps> = (props) => {
                     {!show ? <CaretDown size={22} color={colors.grayMedium} /> : <CaretUp size={22} color={colors.gray} />}
                 </Content>
             </Button>
-            <DropdownContainer isopen={show}>
+            <DropdownContainer isopen={show}  onScroll={handleScroll}>
                 <DropdownItems>
                     {props.options?.map((option, index) => {
                         return(

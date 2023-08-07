@@ -29,12 +29,12 @@ export const SidebarIcon = styled.div`
     margin-right: 14px;
 `;
 
-export const SidebarItem = styled(Link)`
+export const SidebarItem = styled(Link)<{ active?: boolean }>`
     display: flex;
     flex-direction: row;
     align-items: center;
     text-decoration: none;
-    color: #000;
+    color: ${props => props.active ? colors.secondary : colors.black};
     font-size: .9rem;
     font-weight: 500;
     font-family: 'Epilogue', sans-serif;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { 
@@ -21,13 +21,24 @@ import { Eye, EyeSlash, SignIn } from "phosphor-react";
 import { colors } from "../../styles/colors";
 import { handleEmail, handlePassword } from "../../redux/actions/userActions";
 import CardForm from "../../components/CardForm/CardForm";
+import swal from "sweetalert";
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { auth } from "../../services/firebaseConfig";
+import { showLoading } from "../../redux/actions";
+import { config } from "../../util/config";
 
 export default function Login(){
     const dispatch = useDispatch();
     const emailRedux = useSelector((state: any) => state.UserReducer.email);
     const passwordRedux = useSelector((state: any) => state.UserReducer.password);
-    const navigate = useNavigate();
+    const navigateTo = useNavigate();
     const [showPassword, setShowPassword] = useState(false)
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+      ] = useSignInWithEmailAndPassword(auth);
 
     const handleShowPassword = () => {
         setShowPassword(!showPassword);
@@ -48,8 +59,38 @@ export default function Login(){
     }
 
     const submitForm = () => {
-        navigate('/select-hero');
+        if(!emailRedux || !passwordRedux){
+            swal('Atenção', 'Preencha todos os campos!', 'warning')
+        } else {
+            signInWithEmailAndPassword(emailRedux, passwordRedux)
+        }
     }
+    
+    useEffect(() => {
+        if(user){
+            navigateTo('/select-hero')
+            localStorage.setItem(config.criptoSessionStorage, JSON.stringify(user))
+        } else if(error){
+            console.log('Erro ao efetuar o login!', error)
+            if(error.message == 'Firebase: Error (auth/user-not-found).'){
+                swal('Atenção', 'Usuário não encontrado!', 'warning')
+            } else if(error.message == 'Firebase: Error (auth/wrong-password).'){
+                swal('Atenção', 'Usuário ou senha incorreta!', 'warning')
+            } else {
+                swal('Atenção', 'Ocorreu um erro ao efetuar o login!', 'warning')
+            }
+            showLoading(false, dispatch);
+
+        }
+
+        if(loading){
+            showLoading(true, dispatch);
+        }
+        
+        if(!loading){
+            showLoading(false, dispatch);
+        }
+    }, [user, loading, error])
 
 
     return(

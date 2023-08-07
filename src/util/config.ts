@@ -5,6 +5,7 @@ export var config = {
   debug: DEBUG,
   role: 1,
   criptoSessionStorage: '_!@#$%&*()_+ÇMARVEL_PONTUA!@#$%&*()_+',
+  criptoFirstHeroSessionStorage: '_!@#$%&*()_+ÇMARVEL_FIRST_HERO!@#$%&*()_+',
   apiKeys: {
     marvel: {
       publicKey: 'd489e7146364876e6db37826393ca20a',

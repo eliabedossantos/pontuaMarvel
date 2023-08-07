@@ -13,6 +13,7 @@ import { getCharacterById } from "../../services/character-rest";
 import { useDispatch, useSelector } from "react-redux";
 import { showLoading } from "../../redux/actions";
 import swal from "sweetalert";
+import { config } from "../../util";
 
 const tabs: ITab[] = [
     {
@@ -41,11 +42,13 @@ export default function Profile() {
     const [activeTab, setActiveTab] = useState<ITab>(tabs[0]);
     const [hero, setHero] = useState<any>({});
     const selectedHero = useSelector((state: any) => state.UserReducer.selectedHero);
+    const firstHeroStorage = localStorage.getItem(config.criptoFirstHeroSessionStorage);
     const dispatch = useDispatch();
 
     function CharacterInfoById() {
         showLoading(true, dispatch)
-        getCharacterById(selectedHero).then(res => {
+        getCharacterById(selectedHero !== undefined && selectedHero !== 0 ? selectedHero : firstHeroStorage)
+        .then(res => {
             console.log('result', res);
             let heroeInfo = {
                 id: res.results[0].id,
@@ -63,8 +66,8 @@ export default function Profile() {
     }
 
     useEffect(() => {
-        selectedHero && CharacterInfoById();
-    }, [selectedHero]);
+        selectedHero || firstHeroStorage ? CharacterInfoById() : console.log('Não há herói selecionado!');
+    }, [selectedHero, firstHeroStorage]);
     
     return (
         <RowContainer>

@@ -18,6 +18,7 @@ import { ISelectedHero } from "./types";
 import { selectHero } from "../../redux/actions/userActions";
 import { getCharacters } from "../../services/character-rest";
 import swal from "sweetalert";
+import { config } from "../../util";
 
 export default function SelectHero(){
     const dispatch = useDispatch();
@@ -65,6 +66,13 @@ export default function SelectHero(){
         CharacterInfo({});
     };
 
+    const handleSelectHero = (hero: any) => {
+        setSelectedHero(hero);
+        selectHero(hero.id, dispatch);
+        localStorage.setItem(config.criptoFirstHeroSessionStorage, hero.id);
+        console.log(hero);
+    }
+
     useEffect(() => {
         CharacterInfo();
     }, [currentPage, offset]);
@@ -86,7 +94,7 @@ export default function SelectHero(){
             </Container>
             <Container className="pt-3">
                 <Row className="justify-content-end gap-5">
-                    <Col lg={6} md={5} sm={12} xs={12}>
+                    <Col lg={6} md={5} sm={12} xs={12} className="d-none d-md-block">
                         <Building src={BuildingImage} alt="Desenho de um prédio com 6 andares, com janelas e uma porta no centro do edifício." />
                     </Col>                                                                                                                                          
                     <Col lg={4} md={5} sm={12} xs={12}>
@@ -105,11 +113,7 @@ export default function SelectHero(){
                         >
                             <DropDownCustom
                                 options={heroes}
-                                onChange={(option: any) => {
-                                    setSelectedHero(option);
-                                    selectHero(option.id, dispatch);
-                                    console.log(option);
-                                }}
+                                onChange={(option: any) => handleSelectHero(option)}
                                 selected={selectedHero}
                                 currentPage={currentPage}
                                 onPageChange={handlePageChange}

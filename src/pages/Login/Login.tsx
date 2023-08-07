@@ -108,7 +108,7 @@ export default function Login(){
             </Container>
             <Container className="pt-3">
                 <Row className="justify-content-end gap-5">
-                    <Col lg={6} md={5} sm={12} xs={12}>
+                    <Col lg={6} md={5} sm={12} xs={12} className="d-none d-md-block">
                         <Building src={BuildingImage} alt="Desenho de um prédio com 6 andares, com janelas e uma porta no centro do edifício." />
                     </Col>
                     <Col lg={4} md={5} sm={12} xs={12}>

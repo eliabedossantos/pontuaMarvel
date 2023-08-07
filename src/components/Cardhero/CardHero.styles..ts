@@ -4,9 +4,9 @@ import { colors } from '../../styles/colors';
 import { StyledCardProps } from './types';
 
 
-export const StyledCard = styled.div<StyledCardProps>`
+export const StyledCard = styled.button<StyledCardProps>`
     flex: 1;
-    min-width: 260px;
+    min-width: ${props => props.showAllContent ? '100%' : '300px' };
     max-width: 100%;
     height: ${props => props.showAllContent ? '15rem'  : '9.3rem' };
     box-sizing: border-box;
@@ -20,6 +20,8 @@ export const StyledCard = styled.div<StyledCardProps>`
     overflow: hidden;
     text-overflow: ellipsis;
     box-shadow: 0px 6px 18px 0px rgba(0, 0, 0, 0.06);
+    pointer-events: ${props => props.showAllContent ? 'none' : 'auto'};
+    cursor: ${props => props.showAllContent ? 'default' : 'pointer'};
 
 
     @media (max-width: 768px) {
@@ -40,9 +42,11 @@ export const StyledInfo = styled.div<StyledCardProps>`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    align-items: baseline;
     flex: 1;
     height: 100%;
     overflow: hidden;
+    text-align: start;
 `;
 
 export const StyledTitle = styled.h3<StyledCardProps>`
@@ -51,6 +55,7 @@ export const StyledTitle = styled.h3<StyledCardProps>`
     font-weight: 700;
     color: ${props => props.showAllContent ? colors.primaryLight2 : colors.black};
     margin-bottom: ${props => props.showAllContent ? '1.1rem' : '.6rem' };
+    
 `;
 
 export const StyledDescription = styled.p<StyledCardProps>`

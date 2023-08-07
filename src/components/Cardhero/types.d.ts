@@ -6,6 +6,7 @@ export interface ICardHeroProps {
     className?: string;
     index?: number;
     showAllContent?: boolean;
+    onClick?: (id: number) => void;
 }
 
 export interface StyledCardProps {

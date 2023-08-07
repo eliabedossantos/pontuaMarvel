@@ -18,7 +18,7 @@ const CardHero: React.FC<ICardHeroProps> = (props) => {
       : description;
 
     return(
-       <StyledCard showAllContent={props.showAllContent}>
+       <StyledCard showAllContent={props.showAllContent} onClick={() => props.onClick && props.id && props.onClick(props.id)}>
             <StyledImage src={image}  alt={name} showAllContent={props.showAllContent}/>
             <StyledInfo showAllContent={props.showAllContent}>
                 <StyledTitle showAllContent={props.showAllContent}>

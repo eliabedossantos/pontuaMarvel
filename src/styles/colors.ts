@@ -28,7 +28,7 @@ export const colors: any = {
   for: '#444444',
   gray: '#777777',
   grayLight: '#eaecf0',
-  grayMediun: '#667085',
+  grayMedium: '#667085',
   grayStrong: '#101828',
   border: '#D0D5DD',
   facebook: '#5067E3',

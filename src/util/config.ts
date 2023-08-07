@@ -1,12 +1,14 @@
 
 const DEBUG = true;
-const BASEDIR_DEV = '';
-const BASEDIR_PRO = '';
-const BASEDIR = DEBUG ? BASEDIR_DEV : BASEDIR_PRO;
 
 export var config = {
   debug: DEBUG,
-  basedir: BASEDIR,
   role: 1,
-  criptoLocalStorage: '_!@#$%&*()_+ÇMARVEL_PONTUA!@#$%&*()_+',
+  criptoSessionStorage: '_!@#$%&*()_+ÇMARVEL_PONTUA!@#$%&*()_+',
+  apiKeys: {
+    marvel: {
+      publicKey: 'd489e7146364876e6db37826393ca20a',
+      privateKey: '40c51a3b063af406fcd23192134d6b8fc7c4635e',
+    },
+  },
 };

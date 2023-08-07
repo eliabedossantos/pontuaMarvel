@@ -3,7 +3,7 @@ const INITIAL_STATE = {
   password: '',
   uid: '',
   logged: false,
-  selectedHero: {},
+  selectedHero: 0,
 };
 
 const UserReducer = (state = INITIAL_STATE, action: any) => {

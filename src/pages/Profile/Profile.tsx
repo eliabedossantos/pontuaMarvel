@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RowContainer } from "../../components/RowContainer/RowContainer.styles";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import { Col, Container, Row } from "react-bootstrap";
@@ -8,6 +8,9 @@ import TitleProfile from "../../components/TitleProfile/TitleProfile";
 import TabNavigation from "../../components/TabNavigation/TabNavigation";
 import { ITab } from "./types";
 import CardHero from "../../components/Cardhero/CardHero";
+import InfoList from "../../components/InfoList/InfoList";
+import { getCharacterById } from "../../services/character-rest";
+import { useSelector } from "react-redux";
 
 const tabs: ITab[] = [
     {
@@ -34,6 +37,27 @@ const tabs: ITab[] = [
 
 export default function Profile() {
     const [activeTab, setActiveTab] = useState<ITab>(tabs[0]);
+    const [hero, setHero] = useState<any>({});
+    const selectedHero = useSelector((state: any) => state.UserReducer.selectedHero);
+
+    function CharacterInfoById() {
+        getCharacterById(selectedHero).then(res => {
+            console.log('result', res);
+            let heroeInfo = {
+                id: res.results[0].id,
+                name: res.results[0].name,
+                description: res.results[0].description ? res.results[0].description : 'Sem descrição',
+                image: res.results[0].thumbnail.path + '.' + res.results[0].thumbnail.extension,
+            }
+            setHero(heroeInfo);
+        }).catch(err => {
+            console.error('Erro na requisição:', err);
+        });
+    }
+
+    useEffect(() => {
+        selectedHero && CharacterInfoById();
+    }, [selectedHero]);
     
     return (
         <RowContainer>
@@ -43,7 +67,7 @@ export default function Profile() {
                 <Container fluid>
                     <Row>
                         <Col>
-                            <TitleProfile heroName="A-Bomb" />
+                            <TitleProfile heroName={hero.name} />
                         </Col>
                     </Row>
                     <Row>
@@ -60,10 +84,13 @@ export default function Profile() {
                         {activeTab.id === 1 && (
                             <CardHero 
                                 showAllContent={true}
-                                name="Cyclops"
-                                description="Cyclops is a fictional superhero appearing in American comic books published by Marvel Comics and is a founding member of the X-Men"
-                                image="https://i.annihil.us/u/prod/marvel/i/mg/6/70/526547e2d90ad.jpg"
+                                name={hero.name}
+                                description={hero.description}
+                                image={hero.image}
                             />  
+                        )}
+                        {activeTab.id === 2 && (
+                            <InfoList items={['Avengers', 'Defenders']} />
                         )}
                         </Col>
                     </Row>

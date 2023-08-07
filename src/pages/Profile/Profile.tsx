@@ -10,7 +10,9 @@ import { ITab } from "./types";
 import CardHero from "../../components/Cardhero/CardHero";
 import InfoList from "../../components/InfoList/InfoList";
 import { getCharacterById } from "../../services/character-rest";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { showLoading } from "../../redux/actions";
+import swal from "sweetalert";
 
 const tabs: ITab[] = [
     {
@@ -39,8 +41,10 @@ export default function Profile() {
     const [activeTab, setActiveTab] = useState<ITab>(tabs[0]);
     const [hero, setHero] = useState<any>({});
     const selectedHero = useSelector((state: any) => state.UserReducer.selectedHero);
+    const dispatch = useDispatch();
 
     function CharacterInfoById() {
+        showLoading(true, dispatch)
         getCharacterById(selectedHero).then(res => {
             console.log('result', res);
             let heroeInfo = {
@@ -50,8 +54,11 @@ export default function Profile() {
                 image: res.results[0].thumbnail.path + '.' + res.results[0].thumbnail.extension,
             }
             setHero(heroeInfo);
+            showLoading(false, dispatch);
         }).catch(err => {
             console.error('Erro na requisição:', err);
+            showLoading(false, dispatch);
+            swal("Erro!", "Erro ao buscar herói!", "error");
         });
     }
 

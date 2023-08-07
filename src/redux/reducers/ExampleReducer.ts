@@ -1,5 +1,5 @@
 const INITIAL_STATE = {
-  testeRedux: 'testeRedux',
+  testRedux: 'testRedux',
 };
 
 const ExempleReducer = (state = INITIAL_STATE, action: any) => {
@@ -9,7 +9,7 @@ const ExempleReducer = (state = INITIAL_STATE, action: any) => {
       return {...state, ...INITIAL_STATE};
     case 'EXEMPLO_MODIFY_TEST':
       console.log('EXEMPLO_MODIFY_TEST', action);
-      return {...state, testeRedux: action.payload};
+      return {...state, testRedux: action.payload};
     default:
       return state;
   }

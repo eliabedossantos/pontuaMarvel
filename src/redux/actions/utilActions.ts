@@ -4,3 +4,7 @@ export const modifyInputs = (payload: any, type: any, campo: any = null, index: 
   }
   return {payload, type, campo, index};
 };
+
+export const showLoading = (value: boolean, dispatch: any) => {
+  dispatch({type: 'UTIL_MODIFY_LOADING', payload: value});
+}

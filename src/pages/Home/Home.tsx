@@ -6,12 +6,13 @@ import { StyledDivider, StyledDividerContainer } from "../../components/Divider/
 import { StyledContainer } from "./Home.styles";
 import SearchInput from "../../components/SearchInput/SearchInput";
 import CardHero from "../../components/Cardhero/CardHero";
-import { mockHeroes } from "../../util/mock/Heroes";
 import Pagination from "../../components/Pagination/Pagination";
 import { getCharacters } from "../../services/character-rest";
 import { selectHero } from "../../redux/actions/userActions";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { showLoading } from "../../redux/actions";
+import swal from "sweetalert";
 
 export default function Home() {
     const [search, setSearch] = useState<string>("");
@@ -34,6 +35,7 @@ export default function Home() {
 
     
     function CharacterInfo(searchHero: object) {
+        showLoading(true, dispatch);
         getCharacters({
             ...searchHero,
             limit: limit,
@@ -50,10 +52,17 @@ export default function Home() {
                 }
             });
             setHeroes(heroes); 
+            showLoading(false, dispatch);
             console.log('result', res.results);
         })
         .catch(err => {
             console.error('Erro na requisição:', err);
+            showLoading(false, dispatch);
+            swal({
+                title: "Erro!",
+                text: "Erro ao buscar os dados!",
+                icon: "error"
+            });
         });
     }
     

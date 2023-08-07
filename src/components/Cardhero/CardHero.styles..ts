@@ -6,7 +6,7 @@ import { StyledCardProps } from './types';
 
 export const StyledCard = styled.button<StyledCardProps>`
     flex: 1;
-    min-width: ${props => props.showAllContent ? '100%' : '300px' };
+    min-width: ${props => props.showAllContent ? '100%' : '330px' };
     max-width: 100%;
     height: ${props => props.showAllContent ? '15rem'  : '9.3rem' };
     box-sizing: border-box;

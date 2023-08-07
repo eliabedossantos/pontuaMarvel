@@ -1,6 +1,6 @@
 import React from "react";
 import { ISearchInputProps } from "./types";
-import { InputContainer, StyledInput } from "./SearchInput.styles.";
+import { InputContainer, StyledInput } from "./SearchInput.styles";
 import { MagnifyingGlass } from "phosphor-react";
 import { colors } from "../../styles/colors";
 

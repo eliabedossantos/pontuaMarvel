@@ -8,6 +8,7 @@ import { Router } from './Router';
 import swal from 'sweetalert';
 import { config } from './util/config';
 import {  verifyUserLoggedIn } from './services/firebaseActions';
+import Loading from './components/Loading/Loading';
 
 
 
@@ -30,6 +31,7 @@ function App() {
   return (
    <Provider store={storeWrapper}>
         <BrowserRouter>
+          <Loading />
           <Router />
         </BrowserRouter>
    </Provider>

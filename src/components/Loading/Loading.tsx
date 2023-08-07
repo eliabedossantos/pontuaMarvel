@@ -1,8 +1,9 @@
 import React from "react";
 import { LoadingContainer } from "./Loading.styles.";
-import Lottie from "react-lottie";
+
 import loadingAnimation from "../../assets/lotties/loading.json";
 import { useSelector } from "react-redux";
+import Lottie from "react-lottie";
 
 const Loading = () => {
     const loadingRedux = useSelector((state: any) => state.UtilReducer.loading);

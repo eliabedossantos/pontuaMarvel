@@ -22,28 +22,33 @@ const tabs: ITab[] = [
     },
     {
         id: 2,
-        name: 'Teams',
+        name: 'Comics',
     },
     {
         id: 3,
-        name: 'Powers',
+        name: 'Series',
     },
     {
         id: 4,
-        name: 'Species',
+        name: 'Stories',
     },
     {
         id: 5,
-        name: 'Authors',
+        name: 'Events',
     },
 ];
 
 export default function Profile() {
-    const [activeTab, setActiveTab] = useState<ITab>(tabs[0]);
-    const [hero, setHero] = useState<any>({});
     const selectedHero = useSelector((state: any) => state.UserReducer.selectedHero);
     const firstHeroStorage = localStorage.getItem(config.criptoFirstHeroSessionStorage);
     const dispatch = useDispatch();
+    const [activeTab, setActiveTab] = useState<ITab>(tabs[0]);
+    const [hero, setHero] = useState<any>({});
+    const [comics, setComics] = useState<any[]>([]);
+    const [series, setSeries] = useState<any[]>([]);
+    const [stories, setStories] = useState<any[]>([]);
+    const [events, setEvents] = useState<any[]>([]);
+
 
     function CharacterInfoById() {
         showLoading(true, dispatch)
@@ -57,6 +62,30 @@ export default function Profile() {
                 image: res.results[0].thumbnail.path + '.' + res.results[0].thumbnail.extension,
             }
             setHero(heroeInfo);
+            if(res.results[0].comics.items.length > 0){
+                let comicsArr = res.results[0].comics.items.map((comic: any) => {
+                    return comic.name;
+                });
+                setComics(comicsArr);
+            } 
+            if(res.results[0].series.items.length > 0){
+                let seriesArr = res.results[0].series.items.map((serie: any) => {
+                    return serie.name;
+                });
+                setSeries(seriesArr);
+            }
+            if(res.results[0].stories.items.length > 0){
+                let storiesArr = res.results[0].stories.items.map((story: any) => {
+                    return story.name;
+                });
+                setStories(storiesArr);
+            }
+            if(res.results[0].events.items.length > 0){
+                let eventsArr = res.results[0].events.items.map((event: any) => {
+                    return event.name;
+                });
+                setEvents(eventsArr);
+            }
             showLoading(false, dispatch);
         }).catch(err => {
             console.error('Erro na requisição:', err);
@@ -100,7 +129,16 @@ export default function Profile() {
                             />  
                         )}
                         {activeTab.id === 2 && (
-                            <InfoList items={['Avengers', 'Defenders']} />
+                            <InfoList items={comics} />
+                        )}
+                        {activeTab.id === 3 && (
+                            <InfoList items={series} />
+                        )}
+                        {activeTab.id === 4 && (
+                            <InfoList items={stories} />
+                        )}
+                        {activeTab.id === 5 && (
+                            <InfoList items={events} />
                         )}
                         </Col>
                     </Row>

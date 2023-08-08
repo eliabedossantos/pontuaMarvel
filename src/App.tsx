@@ -16,7 +16,6 @@ function App() {
 
   useEffect(() => {
     verifyUserLoggedIn().then((res) => {
-      console.log('res', res);
       if(!res){
         console.log('deslogado');
         window.location.href = '/login';

@@ -60,7 +60,6 @@ export default function SelectHero(){
     }
 
     const handlePageChange = (page: number) => {
-        console.log('page', page, 'offset', offset);
         setCurrentPage(page);
         setOffset((page) * limit);
         CharacterInfo({});

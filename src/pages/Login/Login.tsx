@@ -71,7 +71,7 @@ export default function Login(){
             navigateTo('/select-hero')
             localStorage.setItem(config.criptoSessionStorage, JSON.stringify(user))
         } else if(error){
-            console.log('Erro ao efetuar o login!', error)
+            //console.log('Erro ao efetuar o login!', error)
             if(error.message == 'Firebase: Error (auth/user-not-found).'){
                 swal('Atenção', 'Usuário não encontrado!', 'warning')
             } else if(error.message == 'Firebase: Error (auth/wrong-password).'){

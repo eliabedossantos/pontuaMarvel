@@ -24,7 +24,7 @@ function App() {
         console.log('logado');
       }
     }).catch((err) => {
-      console.log(err);
+      //console.log(err);
     })
   }, [])
 

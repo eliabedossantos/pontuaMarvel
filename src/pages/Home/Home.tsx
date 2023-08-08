@@ -53,7 +53,7 @@ export default function Home() {
             });
             setHeroes(heroes); 
             showLoading(false, dispatch);
-            console.log('result', res.results);
+            //console.log('result', res.results);
         })
         .catch(err => {
             console.error('Erro na requisição:', err);
@@ -71,7 +71,7 @@ export default function Home() {
     }, [search, offset]);
 
     const handleSelectHero = (id: number) => {
-        console.log('id', id);
+        //console.log('id', id);
         selectHero(id, dispatch);
         navigateTo('/profile');
     }

@@ -39,14 +39,14 @@ const Sidebar: React.FC<ISidebarProps> = (props) => {
             if(willDelete){
                 showLoading(true, dispatch);
                 signOutUser().then(() => {
-                    console.log('deslogou')
+                    //console.log('deslogou')
                     localStorage.setItem(config.criptoSessionStorage, JSON.stringify({}));
                     setTimeout(() => {
                         window.location.href = '/'
                         showLoading(false, dispatch);
                     }, 2000)
                 }).catch((error) => {
-                    console.log('erro ao deslogar', error)
+                    //console.log('erro ao deslogar', error)
                     showLoading(false, dispatch);
                     swal('Erro ao deslogar', 'Tente novamente', 'error')
                 })

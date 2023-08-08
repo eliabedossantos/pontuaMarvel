@@ -46,7 +46,7 @@ export default function SelectHero(){
             });
             setHeroes(prevState => prevState !== heroesArr ? [...prevState, ...heroesArr] : heroesArr);
             setLoading(false);
-            console.log('result', res.results);
+            //console.log('result', res.results);
         })
         .catch(err => {
             console.error('Erro na requisição:', err);
@@ -69,7 +69,7 @@ export default function SelectHero(){
         setSelectedHero(hero);
         selectHero(hero.id, dispatch);
         localStorage.setItem(config.criptoFirstHeroSessionStorage, hero.id);
-        console.log(hero);
+        //console.log(hero);
     }
 
     useEffect(() => {

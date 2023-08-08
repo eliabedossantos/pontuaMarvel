@@ -54,7 +54,7 @@ export default function Profile() {
         showLoading(true, dispatch)
         getCharacterById(selectedHero !== undefined && selectedHero !== 0 ? selectedHero : firstHeroStorage)
         .then(res => {
-            console.log('result', res);
+            //console.log('result', res);
             let heroeInfo = {
                 id: res.results[0].id,
                 name: res.results[0].name,
